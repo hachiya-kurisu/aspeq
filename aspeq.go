@@ -1,32 +1,32 @@
 package aspeq
 
 import (
-  "github.com/anthonynsimon/bild/imgio"
+	"github.com/anthonynsimon/bild/imgio"
 	"image"
-  "math"
+	"math"
 )
 
 const Version = "0.0.1"
 
 type AspectRatio struct {
 	ratio float64
-	name string
+	name  string
 }
 
 var Ratios = [...]AspectRatio{
-  {0.5625, "tiktok"},
-  {0.75, "instax"},
-  {1.0, "square"},
-  {1.19, "movietone"},
-  {1.333, "four-thirds"},
-  {1.375, "academy"},
-  {1.50, "35mm"},
-  {1.66, "super16"},
-  {1.77, "sixteen-nine"},
-  {1.85, "flat"},
-  {2.35, "cinemascope"},
-  {2.59, "cinerama"},
-  {3.0, "widelux"},
+	{0.5625, "tiktok"},
+	{0.75, "instax"},
+	{1.0, "square"},
+	{1.19, "movietone"},
+	{1.333, "four-thirds"},
+	{1.375, "academy"},
+	{1.50, "35mm"},
+	{1.66, "super16"},
+	{1.77, "sixteen-nine"},
+	{1.85, "flat"},
+	{2.35, "cinemascope"},
+	{2.59, "cinerama"},
+	{3.0, "widelux"},
 }
 
 func FromWidthHeight(w int, h int) string {
@@ -52,4 +52,3 @@ func FromImage(path string) (string, error) {
 	}
 	return FromRectangle(img.Bounds()), nil
 }
-
