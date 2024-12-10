@@ -23,3 +23,23 @@ func TestInstax(t *testing.T) {
 	}
 }
 
+func TestExtremelyWide(t *testing.T) {
+	ratio := FromWidthHeight(300, 1)
+	if ratio != "widelux" {
+		t.Errorf("300:1 should be closest to widelux, was %s", ratio)
+	}
+}
+
+func TestImage(t *testing.T) {
+	ratio, _ := FromImage("1.66.jpeg")
+	if ratio != "super16" {
+		t.Errorf("1.66.jpeg sould be super16, was %s", ratio)
+	}
+}
+
+func TestNonexistentImage(t *testing.T) {
+	_, err := FromImage("1.67.jpeg")
+	if err == nil {
+		t.Errorf("Getting the ratio for 1.67.jpeg should fail")
+	}
+}
