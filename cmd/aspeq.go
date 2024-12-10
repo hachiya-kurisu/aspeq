@@ -1,10 +1,10 @@
 package main
 
 import (
-  "fmt"
-	"log"
 	"blekksprut.net/aspeq"
-  "os"
+	"fmt"
+	"log"
+	"os"
 )
 
 func main() {
@@ -13,7 +13,7 @@ func main() {
 		return
 	}
 
-	for _, arg := range(os.Args[1:]) {
+	for _, arg := range os.Args[1:] {
 		ratio, err := aspeq.FromImage(arg)
 		if err != nil {
 			log.Fatal(err)
