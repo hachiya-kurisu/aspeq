@@ -6,7 +6,7 @@ import (
 	"math"
 )
 
-const Version = "0.0.1"
+const Version = "0.0.2"
 
 type AspectRatio struct {
 	ratio float64
