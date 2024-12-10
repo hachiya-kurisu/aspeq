@@ -27,14 +27,14 @@ import (
 
 func main() {
   ratio := aspeq.FromWidthHeight(320, 240)
-  fmt.Println(ratio)
+  fmt.Println(ratio.name)
 
-  imgratio, err := aspeq.FromImage("test.jpg")
+  ar, err := aspeq.FromImage("test.jpg")
   if err != nil {
     log.Fatal(err)
     return
   }
-  fmt.Println(imgratio)
+  fmt.Println(ar.name)
 }
 ```
 
