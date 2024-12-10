@@ -19,6 +19,6 @@ func main() {
 			log.Fatal(err)
 			return
 		}
-		fmt.Printf("%s: %s\n", arg, ratio)
+		fmt.Printf("%s: %s\n", arg, ratio.name)
 	}
 }
