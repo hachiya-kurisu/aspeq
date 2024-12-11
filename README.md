@@ -27,14 +27,13 @@ import (
 
 func main() {
   ratio := aspeq.FromWidthHeight(320, 240)
-  fmt.Println(ratio.name)
+  fmt.Println(ratio.Xy()) // prints "4:3"
 
-  ar, err := aspeq.FromImage("test.jpg")
+  ar, err := aspeq.FromImage("1.66.jpeg") // a 40:24 image
   if err != nil {
     log.Fatal(err)
     return
   }
-  fmt.Println(ar.name)
+  fmt.Println(ar.Name) // prints "super16"
 }
 ```
-
