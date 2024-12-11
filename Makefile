@@ -14,3 +14,6 @@ test:
 push:
 	got send
 	git push github
+
+release: push
+	git push github --tags

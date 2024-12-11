@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	version := flag.Bool("f", false, "version")
+	version := flag.Bool("v", false, "version")
 	x := flag.Bool("x", false, "aspect ratio as w:h")
 	flag.Parse()
 
