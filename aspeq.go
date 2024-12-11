@@ -1,6 +1,7 @@
 package aspeq
 
 import (
+	"fmt"
 	"github.com/anthonynsimon/bild/imgio"
 	"image"
 	"math"
@@ -8,32 +9,47 @@ import (
 
 const Version = "0.0.2"
 
+type Orientation int
+
+const (
+	Square Orientation = iota + 1
+	Portrait
+	Landscape
+)
+
 type AspectRatio struct {
-	ratio float64
-	name  string
+	Ratio       float64
+	Name        string
+	X           int64
+	Y           int64
+	Orientation Orientation
 }
 
 var Ratios = [...]AspectRatio{
-	{0.5625, "tiktok"},
-	{0.75, "instax"},
-	{1.0, "square"},
-	{1.19, "movietone"},
-	{1.333, "four-thirds"},
-	{1.375, "academy"},
-	{1.50, "35mm"},
-	{1.66, "super16"},
-	{1.77, "sixteen-nine"},
-	{1.85, "flat"},
-	{2.35, "cinemascope"},
-	{2.59, "cinerama"},
-	{3.0, "widelux"},
+	{0.5625, "tiktok", 9, 16, Portrait},
+	{0.75, "instax", 3, 4, Portrait},
+	{1.0, "square", 1, 1, Square},
+	{1.19, "movietone", 19, 16, Landscape},
+	{1.333, "four-thirds", 4, 3, Landscape},
+	{1.375, "academy", 4, 3, Landscape},
+	{1.50, "35mm", 3, 2, Landscape},
+	{1.66, "super16", 5, 3, Landscape},
+	{1.77, "sixteen-nine", 16, 9, Landscape},
+	{1.85, "flat", 37, 20, Landscape},
+	{2.35, "cinemascope", 47, 20, Landscape},
+	{2.59, "cinerama", 70, 27, Landscape},
+	{3.0, "widelux", 3, 1, Landscape},
+}
+
+func (ar AspectRatio) Xy() string {
+	return fmt.Sprintf("%d:%d", ar.X, ar.Y)
 }
 
 func FromWidthHeight(w int, h int) *AspectRatio {
 	ratio := float64(w) / float64(h)
 	current := Ratios[0]
 	for _, candidate := range Ratios {
-		if math.Abs(ratio-candidate.ratio) > math.Abs(ratio-current.ratio) {
+		if math.Abs(ratio-candidate.Ratio) > math.Abs(ratio-current.Ratio) {
 			return &current
 		}
 		current = candidate
