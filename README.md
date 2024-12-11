@@ -22,6 +22,7 @@ package main
 
 import (
   "fmt"
+  "log"
   "blekksprut.net/aspeq"
 )
 
