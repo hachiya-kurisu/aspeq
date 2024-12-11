@@ -18,7 +18,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	if flag.NArg() <= 1 {
+	if flag.NArg() < 1 {
 		fmt.Fprintf(os.Stderr, "%s [-hxv] images...\n", os.Args[0])
 		return
 	}

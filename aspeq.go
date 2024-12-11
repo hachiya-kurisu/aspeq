@@ -7,7 +7,7 @@ import (
 	"math"
 )
 
-const Version = "0.0.3"
+const Version = "0.0.5"
 
 type Orientation int
 
