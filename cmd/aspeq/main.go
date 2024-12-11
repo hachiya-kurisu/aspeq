@@ -10,6 +10,7 @@ import (
 
 func main() {
 	version := flag.Bool("v", false, "version")
+	short := flag.Bool("s", false, "short - don't show filenames")
 	x := flag.Bool("x", false, "aspect ratio as w:h")
 	flag.Parse()
 
@@ -24,15 +25,23 @@ func main() {
 	}
 
 	for _, arg := range flag.Args() {
-		ratio, err := aspeq.FromImage(arg)
+		ar, err := aspeq.FromImage(arg)
 		if err != nil {
 			log.Fatal(err)
 			return
 		}
+
+		var ratio string
 		if *x {
-			fmt.Printf("%s: %s\n", arg, ratio.Xy())
+			ratio = ar.Xy()
 		} else {
-			fmt.Printf("%s: %s\n", arg, ratio.Name)
+			ratio = ar.Name
+		}
+
+		if *short {
+			fmt.Printf("%s\n", ratio)
+		} else {
+			fmt.Printf("%s: %s\n", arg, ratio)
 		}
 	}
 }
