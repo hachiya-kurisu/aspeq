@@ -39,8 +39,8 @@ func TestInstax(t *testing.T) {
 
 func TestExtremelyWide(t *testing.T) {
 	name := FromWidthHeight(300, 1).Name
-	if name != "widelux" {
-		t.Errorf("300:1 should be closest to widelux, was %s", name)
+	if name != "circle-vision" {
+		t.Errorf("300:1 should be closest to circle-vision, was %s", name)
 	}
 }
 

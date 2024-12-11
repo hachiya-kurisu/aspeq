@@ -36,9 +36,12 @@ var Ratios = [...]AspectRatio{
 	{1.66, "super16", 5, 3, Landscape},
 	{1.77, "sixteen-nine", 16, 9, Landscape},
 	{1.85, "flat", 37, 20, Landscape},
+	{2.0, "univisium", 2, 1, Landscape},
 	{2.35, "cinemascope", 47, 20, Landscape},
 	{2.59, "cinerama", 70, 27, Landscape},
 	{3.0, "widelux", 3, 1, Landscape},
+	{4.0, "polyvision", 4, 1, Landscape},
+	{12.0, "circle-vision", 12, 1, Landscape},
 }
 
 func (ar AspectRatio) Xy() string {
