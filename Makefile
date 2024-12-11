@@ -2,8 +2,8 @@ all: aspeq
 
 again: clean all
 
-aspeq: aspeq.go cmd/aspeq.go
-	go build cmd/aspeq.go
+aspeq: aspeq.go cmd/aspeq/main.go
+	go build -o aspeq cmd/aspeq/main.go
 
 clean:
 	rm -f aspeq
