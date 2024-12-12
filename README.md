@@ -4,7 +4,22 @@ determine closest "standard" aspect ratio of a rectangle or image
 
 ## currently defined ratios
 
-...
+- tiktok (9:16)
+- instax (3:4)
+- square (1:1)
+- movietone (1.19:1)
+- four-thirds (4:3)
+- academy (1.375:1)
+- 35mm (3:2)
+- super16 (5:3)
+- sixteen-nine (16:9)
+- flat (1.85:1)
+- univisium (2:1)
+- cinemascope (2.35:1)
+- cinerama (2.59:1)
+- widelux (3:1)
+- polyvision (4:1)
+- circle-vision (12:1)
 
 ## from the command line
 
