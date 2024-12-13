@@ -10,7 +10,7 @@ determine closest "standard" aspect ratio of a rectangle or image
 - movietone (1.19:1)
 - four-thirds (4:3)
 - academy (1.375:1)
-- 35mm (3:2)
+- leica (3:2)
 - super16 (5:3)
 - sixteen-nine (16:9)
 - flat (1.85:1)
@@ -37,7 +37,6 @@ package main
 
 import (
   "fmt"
-  "log"
   "blekksprut.net/aspeq"
 )
 
@@ -47,8 +46,7 @@ func main() {
 
   ar, err := aspeq.FromImage("1.66.jpeg") // a 40:24 image
   if err != nil {
-    log.Fatal(err)
-    return
+    panic(err)
   }
   fmt.Println(ar.Name) // prints "super16"
 }

@@ -32,7 +32,7 @@ var Ratios = [...]AspectRatio{
 	{1.19, "movietone", 19, 16, Landscape},
 	{1.333, "four-thirds", 4, 3, Landscape},
 	{1.375, "academy", 4, 3, Landscape},
-	{1.50, "35mm", 3, 2, Landscape},
+	{1.50, "leica", 3, 2, Landscape},
 	{1.66, "super16", 5, 3, Landscape},
 	{1.77, "sixteen-nine", 16, 9, Landscape},
 	{1.85, "flat", 37, 20, Landscape},
