@@ -45,15 +45,26 @@ func TestExtremelyWide(t *testing.T) {
 }
 
 func TestImage(t *testing.T) {
-	ar, _ := FromImage("1.66.jpeg")
+	ar, err := FromImage("1.66.jpeg")
+	if err != nil {
+		t.Errorf("something went wrong: %s", err)
+		return
+	}
 	if ar.Name != "super16" {
 		t.Errorf("1.66.jpeg sould be super16, was %s", ar.Name)
+	}
+}
+
+func TestBrokenImage(t *testing.T) {
+	_, err := FromImage("README.md")
+	if err == nil {
+		t.Errorf("getting the aspect ratio for README.md should fail")
 	}
 }
 
 func TestNonexistentImage(t *testing.T) {
 	_, err := FromImage("1.67.jpeg")
 	if err == nil {
-		t.Errorf("Getting the aspect ratio for 1.67.jpeg should fail")
+		t.Errorf("getting the aspect ratio for 1.67.jpeg should fail")
 	}
 }

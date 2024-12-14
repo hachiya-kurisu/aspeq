@@ -2,8 +2,11 @@ package aspeq
 
 import (
 	"fmt"
-	"github.com/anthonynsimon/bild/imgio"
+	"image"
+	"os"
 	"math"
+	_ "image/jpeg"
+	_ "image/png"
 )
 
 const Version = "0.2.0"
@@ -60,9 +63,15 @@ func Match(w int, h int) *AspectRatio {
 }
 
 func FromImage(path string) (*AspectRatio, error) {
-	img, err := imgio.Open(path)
+	f, err := os.Open(path)
 	if err != nil {
-		return &AspectRatio{}, err
+		return nil, err
+	}
+	defer f.Close()
+
+	img, _, err := image.Decode(f)
+	if err != nil {
+		return nil, err
 	}
 	bounds := img.Bounds()
 	return Match(bounds.Dx(), bounds.Dy()), nil
