@@ -1,5 +1,7 @@
 # aspeq
 
+[![Go Reference](https://pkg.go.dev/badge/blekksprut.net/aspeq.svg)](https://pkg.go.dev/blekksprut.net/aspeq)
+
 determine closest "standard" aspect ratio of a rectangle or image
 
 ## currently defined ratios
