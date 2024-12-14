@@ -3,10 +3,10 @@ package aspeq
 import (
 	"fmt"
 	"image"
-	"os"
-	"math"
 	_ "image/jpeg"
 	_ "image/png"
+	"math"
+	"os"
 )
 
 const Version = "0.2.5"

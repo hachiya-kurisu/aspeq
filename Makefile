@@ -15,5 +15,9 @@ push:
 	got send
 	git push github
 
+fmt:
+	gofmt -w *.go
+	gofmt -w cmd/aspeq/main.go
+
 release: push
 	git push github --tags
