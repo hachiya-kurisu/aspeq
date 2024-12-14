@@ -9,7 +9,7 @@ import (
 	_ "image/png"
 )
 
-const Version = "0.2.0"
+const Version = "0.2.5"
 
 type Orientation int
 
