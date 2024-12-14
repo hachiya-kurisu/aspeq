@@ -51,7 +51,7 @@ func TestImage(t *testing.T) {
 		return
 	}
 	if ar.Name != "super16" {
-		t.Errorf("1.66.jpeg sould be super16, was %s", ar.Name)
+		t.Errorf("1.66.jpeg should be super16, was %s", ar.Name)
 	}
 }
 
