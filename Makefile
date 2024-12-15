@@ -16,8 +16,8 @@ push:
 	git push github
 
 fmt:
-	gofmt -w *.go
-	gofmt -w cmd/aspeq/main.go
+	gofmt -s -w *.go
+	gofmt -s -w cmd/aspeq/main.go
 
 release: push
 	git push github --tags

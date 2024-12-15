@@ -3,7 +3,7 @@
 [![Go Reference](https://pkg.go.dev/badge/blekksprut.net/aspeq.svg)](https://pkg.go.dev/blekksprut.net/aspeq)
 [![Go Report Card](https://goreportcard.com/badge/blekksprut.net/aspeq)](https://goreportcard.com/report/blekksprut.net/aspeq)
 
-determine closest "standard" aspect ratio of a rectangle or image
+match the closest "standard" aspect ratio from an image, or from width and height
 
 ## currently defined ratios
 
