@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-const Version = "0.2.7"
+const Version = "0.2.8"
 
 type Orientation int
 
