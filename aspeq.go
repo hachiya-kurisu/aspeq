@@ -46,7 +46,7 @@ var Ratios = [...]AspectRatio{
 	{12.0, "circle-vision", 12, 1, Landscape},
 }
 
-func (ar AspectRatio) Xy() string {
+func (ar *AspectRatio) Xy() string {
 	return fmt.Sprintf("%d:%d", ar.X, ar.Y)
 }
 
