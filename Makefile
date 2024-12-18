@@ -19,5 +19,10 @@ fmt:
 	gofmt -s -w *.go
 	gofmt -s -w cmd/aspeq/main.go
 
+README.md: README.gmi
+	sisyphus -f markdown <README.gmi >README.md
+
+doc: README.md
+
 release: push
 	git push github --tags
