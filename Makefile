@@ -16,8 +16,7 @@ push:
 	git push github
 
 fmt:
-	gofmt -s -w *.go
-	gofmt -s -w cmd/aspeq/main.go
+	gofmt -s -w *.go cmd/*/main.go
 
 README.md: README.gmi
 	sisyphus -f markdown <README.gmi >README.md
