@@ -1,8 +1,8 @@
 package aspeq_test
 
 import (
-	"testing"
 	"blekksprut.net/aspeq"
+	"testing"
 )
 
 func TestXy(t *testing.T) {
