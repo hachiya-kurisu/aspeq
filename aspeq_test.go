@@ -2,6 +2,7 @@ package aspeq_test
 
 import (
 	"blekksprut.net/aspeq"
+	"fmt"
 	"testing"
 )
 
@@ -71,3 +72,19 @@ func TestNonexistentImage(t *testing.T) {
 		t.Errorf("getting the aspect ratio for 1.67.jpeg should fail")
 	}
 }
+
+func ExampleMatch() {
+	ar := aspeq.Match(1920, 1080)
+	fmt.Println(ar.Name)
+	// Output: sixteen-nine
+}
+
+func ExampleFromImage() {
+	ar, err := aspeq.FromImage("1.66.jpeg")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(ar.Name)
+	// Output: super16
+}
+
