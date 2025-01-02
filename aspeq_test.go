@@ -87,4 +87,3 @@ func ExampleFromImage() {
 	fmt.Println(ar.Name)
 	// Output: super16
 }
-

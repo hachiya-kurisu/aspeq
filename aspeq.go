@@ -3,6 +3,7 @@ package aspeq
 import (
 	"fmt"
 	"image"
+	_ "image/gif"
 	_ "image/jpeg"
 	_ "image/png"
 	"math"

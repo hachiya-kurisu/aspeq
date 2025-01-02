@@ -24,12 +24,12 @@ aspeq finds the closest "standard" aspect ratio from an image file, or from rela
 ## command line
 
 ```
-% aspeq *.jpeg
+$ aspeq *.jpeg
 1.66.jpeg: super16
 1.77.jpeg: sixteen-nine
 2.35.jpeg: cinemascope
 
-% aspeq -x 1.66.jpeg
+$ aspeq -x 1.66.jpeg
 1.66.jpeg: 5:3
 ```
 
