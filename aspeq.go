@@ -2,6 +2,8 @@ package aspeq
 
 import (
 	"fmt"
+	_ "golang.org/x/image/tiff"
+	_ "golang.org/x/image/webp"
 	"image"
 	_ "image/gif"
 	_ "image/jpeg"
