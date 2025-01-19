@@ -2,14 +2,15 @@ package aspeq
 
 import (
 	"fmt"
-	_ "golang.org/x/image/tiff"
-	_ "golang.org/x/image/webp"
 	"image"
 	_ "image/gif"
 	_ "image/jpeg"
 	_ "image/png"
 	"math"
 	"os"
+
+	_ "golang.org/x/image/tiff"
+	_ "golang.org/x/image/webp"
 )
 
 const Version = "0.3.5"
