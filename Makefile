@@ -25,3 +25,4 @@ doc: README.md
 
 release: push
 	git push github --tags
+	got send -T
