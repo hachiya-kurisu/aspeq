@@ -32,7 +32,8 @@ type AspectRatio struct {
 }
 
 var Ratios = [...]AspectRatio{
-	{0.5625, "tiktok", 9, 16, Portrait},
+	{0.5625, "insta", 9, 16, Portrait},
+	{0.6667, "classic", 2, 3, Portrait},
 	{0.75, "instax", 3, 4, Portrait},
 	{1.0, "square", 1, 1, Square},
 	{1.19, "movietone", 19, 16, Landscape},
