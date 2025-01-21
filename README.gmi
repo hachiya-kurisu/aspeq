@@ -4,7 +4,8 @@ aspeq finds the closest "standard" aspect ratio from an image file, or from rela
 
 ## defined ratios
 
-* tiktok (9:16)
+* insta (9:16)
+* classic (2:3)
 * instax (3:4)
 * square (1:1)
 * movietone (1.19:1)
