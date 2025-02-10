@@ -13,6 +13,7 @@ func main() {
 	version := flag.Bool("v", false, "version")
 	short := flag.Bool("s", false, "short - don't show filenames")
 	x := flag.Bool("x", false, "aspect ratio as w:h")
+	o := flag.Bool("o", false, "show image orientation")
 	css := flag.Bool("c", false, "generate css and exit")
 	flag.Parse()
 
@@ -29,7 +30,7 @@ func main() {
 	}
 
 	if flag.NArg() < 1 {
-		fmt.Fprintf(os.Stderr, "%s [-csvxh] images...\n", os.Args[0])
+		flag.Usage()
 		return
 	}
 
@@ -40,11 +41,19 @@ func main() {
 			return
 		}
 
-		var ratio string
+		ratio := ar.Name
 		if *x {
 			ratio = ar.Xy()
-		} else {
-			ratio = ar.Name
+		}
+		if *o {
+			switch ar.Orientation {
+			case aspeq.Portrait:
+				ratio = "portrait"
+			case aspeq.Landscape:
+				ratio = "landscape"
+			default:
+				ratio = "square"
+			}
 		}
 
 		if *short {
