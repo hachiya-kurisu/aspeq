@@ -10,19 +10,19 @@ import (
 )
 
 func main() {
-	version := flag.Bool("v", false, "version")
-	short := flag.Bool("s", false, "short - don't show filenames")
+	v := flag.Bool("v", false, "version")
+	s := flag.Bool("s", false, "short - don't show filenames")
 	x := flag.Bool("x", false, "aspect ratio as w:h")
 	o := flag.Bool("o", false, "show image orientation")
-	css := flag.Bool("c", false, "generate css and exit")
+	c := flag.Bool("c", false, "generate css and exit")
 	flag.Parse()
 
-	if *version {
+	if *v {
 		fmt.Printf("%s %s\n", os.Args[0], aspeq.Version)
 		os.Exit(0)
 	}
 
-	if *css {
+	if *c {
 		for _, ar := range aspeq.Ratios {
 			fmt.Printf(".%s { aspect-ratio: %d/%d; }\n", ar.Name, ar.X, ar.Y)
 		}
@@ -56,7 +56,7 @@ func main() {
 			}
 		}
 
-		if *short {
+		if *s {
 			fmt.Printf("%s\n", ratio)
 		} else {
 			fmt.Printf("%s: %s\n", arg, ratio)
