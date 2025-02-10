@@ -49,7 +49,7 @@ func TestExtremelyWide(t *testing.T) {
 }
 
 func TestImage(t *testing.T) {
-	ar, err := aspeq.FromImage("1.66.jpeg")
+	ar, err := aspeq.FromPath("1.66.jpeg")
 	if err != nil {
 		t.Errorf("something went wrong: %s", err)
 		return
@@ -60,16 +60,30 @@ func TestImage(t *testing.T) {
 }
 
 func TestBrokenImage(t *testing.T) {
-	_, err := aspeq.FromImage("README.md")
+	_, err := aspeq.FromPath("README.md")
 	if err == nil {
 		t.Errorf("getting the aspect ratio for README.md should fail")
 	}
 }
 
 func TestNonexistentImage(t *testing.T) {
-	_, err := aspeq.FromImage("1.67.jpeg")
+	_, err := aspeq.FromPath("1.67.jpeg")
 	if err == nil {
 		t.Errorf("getting the aspect ratio for 1.67.jpeg should fail")
+	}
+}
+
+func TestNonexistentImageCrop(t *testing.T) {
+	_, err := aspeq.CropPath("1.67.jpeg", aspeq.Cinerama)
+	if err == nil {
+		t.Errorf("cropping an image that doesn't exist should fail")
+	}
+}
+
+func TestBrokenCrop(t *testing.T) {
+	_, err := aspeq.CropPath("README.md", aspeq.Cinerama)
+	if err == nil {
+		t.Errorf("cropping README.md should fail")
 	}
 }
 
@@ -79,11 +93,41 @@ func ExampleMatch() {
 	// Output: sixteen-nine
 }
 
-func ExampleFromImage() {
-	ar, err := aspeq.FromImage("1.66.jpeg")
+func ExampleFromPath() {
+	ar, err := aspeq.FromPath("1.66.jpeg")
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(ar.Name)
 	// Output: super16
+}
+
+func ExampleCropPath() {
+	img, err := aspeq.CropPath("1.66.jpeg", aspeq.Square)
+	if err != nil {
+		panic(err)
+	}
+	bounds := img.Bounds()
+	fmt.Printf("%dx%d\n", bounds.Dx(), bounds.Dy())
+	// Output: 24x24
+}
+
+func ExampleCropToCinerama() {
+	img, err := aspeq.CropPath("1.66.jpeg", aspeq.Cinerama)
+	if err != nil {
+		panic(err)
+	}
+	bounds := img.Bounds()
+	fmt.Printf("%dx%d\n", bounds.Dx(), bounds.Dy())
+	// Output: 40x15
+}
+
+func ExampleCropToClassic() {
+	img, err := aspeq.CropPath("1.66.jpeg", aspeq.Classic)
+	if err != nil {
+		panic(err)
+	}
+	bounds := img.Bounds()
+	fmt.Printf("%dx%d\n", bounds.Dx(), bounds.Dy())
+	// Output: 16x24
 }

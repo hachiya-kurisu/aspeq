@@ -11,10 +11,12 @@ import (
 
 func main() {
 	v := flag.Bool("v", false, "version")
+
 	s := flag.Bool("s", false, "short - don't show filenames")
 	x := flag.Bool("x", false, "aspect ratio as w:h")
 	o := flag.Bool("o", false, "show image orientation")
 	c := flag.Bool("c", false, "generate css and exit")
+
 	flag.Parse()
 
 	if *v {
@@ -35,7 +37,7 @@ func main() {
 	}
 
 	for _, arg := range flag.Args() {
-		ar, err := aspeq.FromImage(arg)
+		ar, err := aspeq.FromPath(arg)
 		if err != nil {
 			log.Fatal(err)
 			return
