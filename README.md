@@ -37,6 +37,15 @@ $ aspeq -o 1.66.jpeg
 1.66.jpeg: landscape
 ```
 
+slasher lets you crop images to a specific aspect ratio
+
+```
+$ slasher -o leica.jpg -a leica super16.jpg
+$ slasher -o closest.jpg weird.jpg # crops to closest defined aspect ratio
+$ slasher -a cinerama cat.jpg # prints dimensions if cropped to cinerama
+```
+
+
 ## go
 
 ```
