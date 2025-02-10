@@ -32,6 +32,9 @@ $ aspeq *.jpeg
 
 $ aspeq -x 1.66.jpeg
 1.66.jpeg: 5:3
+
+$ aspeq -o 1.66.jpeg
+1.66.jpeg: landscape
 ```
 
 ## go
