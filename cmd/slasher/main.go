@@ -11,11 +11,12 @@ import (
 
 func main() {
 	v := flag.Bool("v", false, "version")
+	l := flag.Bool("l", false, "list available aspect ratios and exit")
 	o := flag.String("o", "", "write cropped image to this path")
 	a := flag.String("a", "", "desired ratio. defaults to closest defined ratio")
 
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "%s [-aov] path\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "%s [-alov] path\n", os.Args[0])
 		flag.PrintDefaults()
 	}
 
@@ -23,6 +24,13 @@ func main() {
 
 	if *v {
 		fmt.Printf("%s %s 🔪\n", os.Args[0], aspeq.Version)
+		os.Exit(0)
+	}
+
+	if *l {
+		for _, ar := range aspeq.Ratios {
+			fmt.Printf("%s: %dx%d\n", ar.Name, ar.X, ar.Y)
+		}
 		os.Exit(0)
 	}
 
