@@ -43,6 +43,7 @@ slasher lets you crop images to a specific aspect ratio
 $ slasher -o leica.jpg -a leica super16.jpg
 $ slasher -o closest.jpg weird.jpg # crops to closest defined aspect ratio
 $ slasher -a cinerama cat.jpg # prints dimensions if cropped to cinerama
+1600x617
 ```
 
 
