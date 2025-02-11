@@ -73,7 +73,7 @@ func main() {
 		}
 		defer file.Close()
 
-		err = jpeg.Encode(file, img, nil)
+		err = jpeg.Encode(file, img, &jpeg.Options{Quality: 92})
 		if err != nil {
 			log.Fatal(err)
 		}
