@@ -62,7 +62,7 @@ func main() {
   ratio := aspeq.Match(320, 240)
   fmt.Println(ratio.Xy()) // prints "4:3"
 
-  ar, err := aspeq.FromImage("1.66.jpeg") // a 40:24 image
+  ar, err := aspeq.FromPath("1.66.jpeg") // a 40:24 image
   if err != nil {
     panic(err)
   }
