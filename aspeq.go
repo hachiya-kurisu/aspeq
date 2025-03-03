@@ -14,7 +14,7 @@ import (
 	_ "golang.org/x/image/webp"
 )
 
-const Version = "0.4.0"
+const Version = "0.4.1"
 
 type Orientation int
 
