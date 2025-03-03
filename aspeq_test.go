@@ -112,7 +112,7 @@ func ExampleCropPath() {
 	// Output: 24x24
 }
 
-func ExampleCropToCinerama() {
+func ExampleCropPath_cinerama() {
 	img, err := aspeq.CropPath("1.66.jpeg", aspeq.Cinerama)
 	if err != nil {
 		panic(err)
@@ -122,7 +122,7 @@ func ExampleCropToCinerama() {
 	// Output: 40x15
 }
 
-func ExampleCropToClassic() {
+func ExampleCropPath_classic() {
 	img, err := aspeq.CropPath("1.66.jpeg", aspeq.Classic)
 	if err != nil {
 		panic(err)
