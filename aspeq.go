@@ -1,3 +1,4 @@
+// Package aspeq matches and converts images to "standard" aspect ratios
 package aspeq
 
 import (
@@ -16,6 +17,7 @@ import (
 
 const Version = "0.4.1"
 
+// Represents an image orientation - Balanced (1:1), Portrait or Landscape
 type Orientation int
 
 const (
@@ -24,6 +26,7 @@ const (
 	Landscape
 )
 
+// Represents a "standard", or named aspect ratio
 type AspectRatio struct {
 	Ratio       float64
 	Name        string
@@ -50,16 +53,19 @@ var Widelux = &AspectRatio{3.0, "widelux", 3, 1, Landscape}
 var Polyvision = &AspectRatio{4.0, "polyvision", 4, 1, Landscape}
 var CircleVision = &AspectRatio{12.0, "circle-vision", 12, 1, Landscape}
 
+// All named aspect ratios
 var Ratios = [...]*AspectRatio{
 	Insta, Classic, Instax, Square, Movietone, FourThirds, Academy,
 	Leica, Super16, SixteenNine, Flat, Univisium, Cinemascope, Cinerama,
 	Widelux, Polyvision, CircleVision,
 }
 
+// Xy returns the aspect ratio as <width>:<height>
 func (ar *AspectRatio) Xy() string {
 	return fmt.Sprintf("%d:%d", ar.X, ar.Y)
 }
 
+// Match returns the closest named aspect ratio for the given dimensions (w, h)
 func Match(w int, h int) *AspectRatio {
 	ratio := float64(w) / float64(h)
 	current := Ratios[0]
@@ -72,11 +78,13 @@ func Match(w int, h int) *AspectRatio {
 	return current
 }
 
+// FromImage returns the closest named aspect ratio for the given image (img)
 func FromImage(img image.Image) *AspectRatio {
 	bounds := img.Bounds()
 	return Match(bounds.Dx(), bounds.Dy())
 }
 
+// FromPath returns the closest named aspect ratio for the given file (path)
 func FromPath(path string) (*AspectRatio, error) {
 	f, err := os.Open(path)
 	if err != nil {
@@ -91,6 +99,7 @@ func FromPath(path string) (*AspectRatio, error) {
 	return FromImage(img), nil
 }
 
+// CropImage crops an image (img) to the desired aspect ratio (ar)
 func CropImage(img image.Image, ar *AspectRatio) image.Image {
 	var w, h, x, y int
 	bounds := img.Bounds()
@@ -111,6 +120,7 @@ func CropImage(img image.Image, ar *AspectRatio) image.Image {
 	return cropped
 }
 
+// CropImage crops a file (path) to the desired aspect ratio (ar)
 func CropPath(path string, ar *AspectRatio) (image.Image, error) {
 	f, err := os.Open(path)
 	if err != nil {
