@@ -36,8 +36,14 @@ func main() {
 		return
 	}
 
+	var ar *aspeq.AspectRatio
+	var err error
 	for _, arg := range flag.Args() {
-		ar, err := aspeq.FromPath(arg)
+		if arg == "-" {
+			ar, err = aspeq.FromReader(os.Stdin)
+		} else {
+			ar, err = aspeq.FromPath(arg)
+		}
 		if err != nil {
 			log.Fatal(err)
 			return

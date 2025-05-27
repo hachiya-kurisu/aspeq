@@ -8,6 +8,7 @@ import (
 	_ "image/gif"
 	_ "image/jpeg"
 	_ "image/png"
+	"io"
 	"math"
 	"os"
 
@@ -65,7 +66,7 @@ func (ar *AspectRatio) Xy() string {
 	return fmt.Sprintf("%d:%d", ar.X, ar.Y)
 }
 
-// Match returns the closest named aspect ratio for the given dimensions (w, h)
+// Match returns the closest named aspect ratio for the given dimensions
 func Match(w int, h int) *AspectRatio {
 	ratio := float64(w) / float64(h)
 	current := Ratios[0]
@@ -78,21 +79,27 @@ func Match(w int, h int) *AspectRatio {
 	return current
 }
 
-// FromImage returns the closest named aspect ratio for the given image (img)
+// FromImage returns the closest named aspect ratio for the given image
 func FromImage(img image.Image) *AspectRatio {
 	bounds := img.Bounds()
 	return Match(bounds.Dx(), bounds.Dy())
 }
 
-// FromPath returns the closest named aspect ratio for the given file (path)
+// FromReader reads image data from the file at path, decodes it,
+// and returns the closest matching named aspect ratio.
 func FromPath(path string) (*AspectRatio, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
+	return FromReader(f)
+}
 
-	img, _, err := image.Decode(f)
+// FromReader reads image data from the provided io.Reader, decodes it,
+// and returns the closest matching named aspect ratio.
+func FromReader(rd io.Reader) (*AspectRatio, error) {
+	img, _, err := image.Decode(rd)
 	if err != nil {
 		return nil, err
 	}
