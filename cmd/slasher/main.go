@@ -14,6 +14,7 @@ func main() {
 	l := flag.Bool("l", false, "list available aspect ratios and exit")
 	o := flag.String("o", "", "write cropped image to this path")
 	a := flag.String("a", "", "desired ratio. defaults to closest defined ratio")
+	q := flag.Int("q", 92, "jpeg output quality")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "%s [-alov] path\n", os.Args[0])
@@ -73,7 +74,7 @@ func main() {
 		}
 		defer file.Close()
 
-		err = jpeg.Encode(file, img, &jpeg.Options{Quality: 92})
+		err = jpeg.Encode(file, img, &jpeg.Options{Quality: *q})
 		if err != nil {
 			log.Fatal(err)
 		}
