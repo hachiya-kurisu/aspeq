@@ -6,6 +6,13 @@ import (
 	"testing"
 )
 
+func TestZeroXy(t *testing.T) {
+	xy := aspeq.Match(0, 0).Xy()
+	if xy != "12:1" {
+		t.Errorf("should return an invalid ratio")
+	}
+}
+
 func TestXy(t *testing.T) {
 	xy := aspeq.Match(5, 3).Xy()
 	if xy != "5:3" {
