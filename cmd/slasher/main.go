@@ -23,6 +23,11 @@ func main() {
 
 	flag.Parse()
 
+	if *q < 1 || *q > 100 {
+		fmt.Fprintf(os.Stderr, "jpeg quality must be between 1 and 100\n")
+		os.Exit(1)
+	}
+
 	if *v {
 		fmt.Printf("%s %s 🔪\n", os.Args[0], aspeq.Version)
 		os.Exit(0)
