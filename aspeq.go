@@ -18,7 +18,7 @@ import (
 	_ "golang.org/x/image/webp"
 )
 
-const Version = "0.5.2"
+const Version = "0.6.0"
 
 // Represents an image orientation - Balanced (1:1), Portrait or Landscape
 type Orientation int
