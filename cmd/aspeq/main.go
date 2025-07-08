@@ -11,7 +11,7 @@ import (
 
 func main() {
 	v := flag.Bool("v", false, "version")
-
+	l := flag.Bool("l", false, "list available aspect ratios and exit")
 	s := flag.Bool("s", false, "short - don't show filenames")
 	x := flag.Bool("x", false, "aspect ratio as w:h")
 	o := flag.Bool("o", false, "show image orientation")
@@ -21,6 +21,13 @@ func main() {
 
 	if *v {
 		fmt.Printf("%s %s\n", os.Args[0], aspeq.Version)
+		os.Exit(0)
+	}
+
+	if *l {
+		for _, ar := range aspeq.Ratios {
+			fmt.Printf("%s: %dx%d\n", ar.Name, ar.X, ar.Y)
+		}
 		os.Exit(0)
 	}
 
