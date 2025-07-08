@@ -94,6 +94,14 @@ func TestBrokenCrop(t *testing.T) {
 	}
 }
 
+func TestRegister(t *testing.T) {
+	aspeq.Register("test", 21, 9)
+	ar := aspeq.Match(21, 9)
+	if ar.Name != "test" {
+		t.Errorf("custom aspect ratio not found, got %s", ar.Name)
+	}
+}
+
 func ExampleMatch() {
 	ar := aspeq.Match(1920, 1080)
 	fmt.Println(ar.Name)

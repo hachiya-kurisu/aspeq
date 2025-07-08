@@ -11,6 +11,7 @@ import (
 	"io"
 	"math"
 	"os"
+	"sort"
 
 	_ "golang.org/x/image/tiff"
 	_ "golang.org/x/image/webp"
@@ -55,10 +56,27 @@ var Polyvision = &AspectRatio{4.0, "polyvision", 4, 1, Landscape}
 var CircleVision = &AspectRatio{12.0, "circle-vision", 12, 1, Landscape}
 
 // All named aspect ratios
-var Ratios = [...]*AspectRatio{
+var Ratios = []*AspectRatio{
 	Insta, Classic, Instax, Square, Movietone, FourThirds, Academy,
 	Leica, Super16, SixteenNine, Flat, Univisium, Cinemascope, Cinerama,
 	Widelux, Polyvision, CircleVision,
+}
+
+// Register adds a custom aspect ratio
+func Register(name string, x, y int64) {
+	ratio := float64(x) / float64(y)
+	orientation := Portrait
+	if ratio > 1.0 {
+		orientation = Landscape
+	} else if ratio == 1.0 {
+		orientation = Balanced
+	}
+	ar := &AspectRatio{ratio, name, x, y, orientation}
+	Ratios = append(Ratios, ar)
+
+	sort.Slice(Ratios, func(a, b int) bool {
+		return Ratios[a].Ratio < Ratios[b].Ratio
+	})
 }
 
 // Xy returns the aspect ratio as <width>:<height>
