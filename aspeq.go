@@ -12,6 +12,7 @@ import (
 	"math"
 	"os"
 	"sort"
+	"slices"
 
 	_ "golang.org/x/image/tiff"
 	_ "golang.org/x/image/webp"
@@ -76,6 +77,13 @@ func Register(name string, x, y int64) {
 
 	sort.Slice(Ratios, func(a, b int) bool {
 		return Ratios[a].Ratio < Ratios[b].Ratio
+	})
+}
+
+// Unregister removes an existing ratio
+func Unregister(name string) {
+	Ratios = slices.DeleteFunc(Ratios, func(ar *AspectRatio) bool {
+		return ar.Name == name
 	})
 }
 

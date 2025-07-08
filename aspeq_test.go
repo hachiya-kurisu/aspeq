@@ -102,6 +102,15 @@ func TestRegister(t *testing.T) {
 	}
 }
 
+func TestUnregister(t *testing.T) {
+	aspeq.Unregister("square")
+	aspeq.Register("balanced", 1, 1)
+	ar := aspeq.Match(1, 1)
+	if ar.Name != "balanced" {
+		t.Errorf("custom aspect ratio not found, got %s", ar.Name)
+	}
+}
+
 func ExampleMatch() {
 	ar := aspeq.Match(1920, 1080)
 	fmt.Println(ar.Name)
