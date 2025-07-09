@@ -35,37 +35,42 @@ $ aspeq -x 1.66.jpeg
 
 $ aspeq -o 1.66.jpeg
 1.66.jpeg: landscape
-```
 
+$ aspeq -l # lists available aspect ratios
+
+```
 slasher lets you crop images to a specific aspect ratio
 
 ```sh
 $ slasher -o leica.jpg -a leica super16.jpg
+$ slasher -q 1 -o leica.jpg -a leica super16.jpg # low quality jpeg
 $ slasher -o closest.jpg weird.jpg # crop to closest aspect ratio
 $ slasher -a cinerama cat.jpg # prints cinerama dimensions
 1600x617
 $ slasher -l # lists available aspect ratios
 ```
 
-
 ## go
 
 ```go
-package main
+// match ratio from dimensions
+ratio := aspeq.Match(320, 240)
+fmt.Println(ratio.Xy()) // prints "4:3"
+fmt.Println(ratio.Name) // prints "four-thirds"
 
-import (
-  "fmt"
-  "blekksprut.net/aspeq"
-)
+// analyze images
+ar, err := aspeq.FromPath("1.66.jpeg") // a 40:24 image
+if err != nil {
+  panic(err)
+}
+fmt.Println(ar.Name) // prints "super16"
 
-func main() {
-  ratio := aspeq.Match(320, 240)
-  fmt.Println(ratio.Xy()) // prints "4:3"
+// custom aspect ratios
+aspeq.Register("ticker", 7, 1)
 
-  ar, err := aspeq.FromPath("1.66.jpeg") // a 40:24 image
-  if err != nil {
-    panic(err)
-  }
-  fmt.Println(ar.Name) // prints "super16"
+// crop image to a specific aspect ratio
+cropped, err := aspeq.CropPath("1.66.jpeg", aspeq.Square)
+if err != nil {
+  panic(err)
 }
 ```
