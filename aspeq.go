@@ -11,8 +11,8 @@ import (
 	"io"
 	"math"
 	"os"
-	"sort"
 	"slices"
+	"sort"
 
 	_ "golang.org/x/image/tiff"
 	_ "golang.org/x/image/webp"

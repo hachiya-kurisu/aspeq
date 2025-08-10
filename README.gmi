@@ -77,4 +77,4 @@ if err != nil {
 
 ## author
 
-=> https://blekksprut.net/ 蜂谷栗栖
+=> //blekksprut.net/ 蜂谷栗栖

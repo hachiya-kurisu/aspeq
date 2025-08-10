@@ -1,5 +1,5 @@
 module blekksprut.net/aspeq
 
-go 1.24.5
+go 1.24.6
 
-require golang.org/x/image v0.29.0
+require golang.org/x/image v0.30.0
