@@ -1,12 +1,13 @@
 package main
 
 import (
-	"blekksprut.net/aspeq"
 	"flag"
 	"fmt"
 	"image/jpeg"
 	"log"
 	"os"
+
+	"blekksprut.net/aspeq"
 )
 
 func main() {

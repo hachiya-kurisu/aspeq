@@ -13,12 +13,15 @@ import (
 	"os"
 	"slices"
 	"sort"
+	"sync"
 
 	_ "golang.org/x/image/tiff"
 	_ "golang.org/x/image/webp"
 )
 
 const Version = "0.6.0"
+
+var mu sync.RWMutex
 
 // Represents an image orientation - Balanced (1:1), Portrait or Landscape
 type Orientation int
@@ -65,6 +68,8 @@ var Ratios = []*AspectRatio{
 
 // Register adds a custom aspect ratio
 func Register(name string, x, y int64) {
+	mu.Lock()
+	defer mu.Unlock()
 	ratio := float64(x) / float64(y)
 	orientation := Portrait
 	if ratio > 1.0 {
@@ -82,6 +87,8 @@ func Register(name string, x, y int64) {
 
 // Unregister removes an existing ratio
 func Unregister(name string) {
+	mu.Lock()
+	defer mu.Unlock()
 	Ratios = slices.DeleteFunc(Ratios, func(ar *AspectRatio) bool {
 		return ar.Name == name
 	})
@@ -94,6 +101,8 @@ func (ar *AspectRatio) Xy() string {
 
 // Match returns the closest named aspect ratio for the given dimensions
 func Match(w int, h int) *AspectRatio {
+	mu.RLock()
+	defer mu.RUnlock()
 	ratio := float64(w) / float64(h)
 	current := Ratios[0]
 	for _, candidate := range Ratios {
