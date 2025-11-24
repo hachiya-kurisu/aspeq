@@ -153,7 +153,7 @@ func CropImage(img image.Image, ar *AspectRatio) image.Image {
 	return cropped
 }
 
-// CropImage crops a file (path) to the desired aspect ratio (ar)
+// CropPath crops a file (path) to the desired aspect ratio (ar)
 func CropPath(path string, ar *AspectRatio) (image.Image, error) {
 	f, err := os.Open(path)
 	if err != nil {
