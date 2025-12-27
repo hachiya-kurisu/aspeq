@@ -30,6 +30,9 @@ README.md: README.gmi
 
 doc: README.md
 
+dead:
+	deadcode -test ./...
+
 release: push
 	git push github --tags
 	got send -T
